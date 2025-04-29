@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Check-in</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="success-container">
+      <dotlottie-player id="success-icon-new" src="https://lottie.host/64b537b2-e211-4b2e-98c4-4dfe58e0e9ae/xehVIF0Hjf.lottie" background="transparent" speed="1" style="width: 400px; height: 400px" autoplay></dotlottie-player>
+      <svg id='success-icon' width='180' height='180' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><rect width='24' height='24' stroke='none' fill='#ffff' opacity='0'/><g transform="matrix(1.43 0 0 1.43 12 12)" ><g><g transform="matrix(1 0 0 1 0 -0.13)" ><path style="stroke: rgb(255, 255, 255); stroke-width: 1; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;" transform=" translate(-7, -6.87)" d="M 4 8 L 6.05 9.64 C 6.161496806028709 9.731817610451968 6.308412177997273 9.768546453444108 6.45 9.74 C 6.5928243153403665 9.713208241916785 6.716927106184054 9.625606271909476 6.79 9.5 L 10 4" stroke-linecap="round" /></g><g transform="matrix(1 0 0 1 0 0)" ><circle style="stroke: rgb(255, 255, 255); stroke-width: 1; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;" cx="0" cy="0" r="6.5" /></g></g></g></svg>
+      <h1 class="success-title">You're checked-in!<br><span id="currentDate"></span></h1>
+      <script>
+        const currentDateElement = document.getElementById('currentDate');
+        const now = new Date();
+        const options = {year: 'numeric', month: 'long', day: 'numeric'};
+        currentDateElement.textContent = now.toLocaleDateString(undefined, options);
+      </script>
+    </div>
+
+    <div class="loading-container">
+      <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+
+    <div class="main-container">
+        <svg id='check-inIcon' width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><rect width='24' height='24' stroke='none' fill='#ffff' opacity='0'/><g transform="matrix(0.83 0 0 0.83 12 12)" ><g><g transform="matrix(1 0 0 1 -6.29 1.5)" ><path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255, 255, 255); fill-rule: nonzero; opacity: 1;" transform=" translate(-5.71, -13.5)" d="M 11.33 12.42 C 11.428121341673283 12.311708199335055 11.46895100508404 12.163236696023208 11.44 12.02 C 11.419120969405146 11.880246801210266 11.33892687611567 11.75631047521744 11.219999999999999 11.68 C 10.025728038336336 10.914902626937613 8.63831870868351 10.505616874690029 7.220000000000002 10.5 C 3.8957819252639667 10.50237768756259 0.9642427848843367 12.678700373495388 0 15.86 C -0.044066022466627816 16.011083505599863 -0.014427190999916253 16.17409707866678 0.08000000000000002 16.3 C 0.17223525549682683 16.42850151011721 0.3218576386081346 16.503312701672865 0.48 16.5 L 9.15 16.5 C 9.392226368113054 16.503246836746747 9.60047104483269 16.329001290920115 9.64 16.09 C 9.88004175243965 14.742217587502573 10.46193343927877 13.478582977621171 11.329999999999998 12.420000000000003 Z" stroke-linecap="round" /></g><g transform="matrix(1 0 0 1 -5 -7.25)" ><circle style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255, 255, 255); fill-rule: nonzero; opacity: 1;" cx="0" cy="0" r="4.75" /></g><g transform="matrix(1 0 0 1 5.37 5.5)" ><path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255, 255, 255); fill-rule: nonzero; opacity: 1;" transform=" translate(-17.37, -17.5)" d="M 23.05 18.19 C 22.522594477667177 18.02735853972317 21.96314242213107 18.322749225046238 21.8 18.85 C 21.107690637349755 21.051392929467585 18.86233440030773 22.372287039483027 16.601841905885124 21.90796305110623 C 14.341349411462522 21.44363906272943 12.798473765613783 19.34461056779568 13.029975938974312 17.048564003099656 C 13.26147811233484 14.752517438403633 15.192315194130249 13.00373098927361 17.499999999999996 13 C 18.052284749830793 13 18.5 12.552284749830793 18.5 12 C 18.5 11.447715250169207 18.052284749830793 11 17.5 11 C 14.163518114589952 10.99807999787259 11.367428764633667 13.522619319977215 11.029654165185502 16.841960124722217 C 10.691879565737338 20.161300929467217 12.92212922392119 23.197318206091687 16.190607475440753 23.867515921263234 C 19.45908572696032 24.53771363643478 22.704187766110195 22.62441094284531 23.7 19.439999999999998 C 23.863463298315683 18.91552499777415 23.573234276421605 18.357392263362463 23.05 18.19 Z" stroke-linecap="round" /></g><g transform="matrix(1 0 0 1 7.22 3.99)" ><path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255, 255, 255); fill-rule: nonzero; opacity: 1;" transform=" translate(-19.22, -15.99)" d="M 22.29 12.67 L 17.849999999999998 17.11 C 17.655578244900678 17.300571438097144 17.34442175509932 17.300571438097144 17.15 17.11 L 16.15 16.11 C 15.759962545689074 15.7222764052892 15.130037454310921 15.7222764052892 14.739999999999998 16.11 C 14.3522764052892 16.500037454310924 14.3522764052892 17.129962545689075 14.739999999999998 17.52 L 16.32 19.1 C 16.978823529411766 19.753333333333334 18.041176470588233 19.753333333333334 18.7 19.1 L 23.7 14.100000000000001 C 24.0877235947108 13.709962545689077 24.0877235947108 13.080037454310924 23.7 12.690000000000001 C 23.31548563813928 12.296689282598344 22.685515173010817 12.287753531319925 22.29 12.67 Z" stroke-linecap="round" /></g></g></g></svg>
+        <header>
+            <h1 class="main-title">Online Check-in</h1>
+            <p>Please check in your attendance <br>by typing your <b>full name!</b></p>
+        </header>
+        <main>
+            <form id="check-in-form" method="POST" action="https://script.google.com/macros/s/AKfycbwMPm7WmTP5dhAvy400-4fC9HAftNcgHq-q6MOpxbRqylfPQWw-Uqqq7IX9KcPKNwgzGA/exec">
+                <p class="notifi-input" id="alert-txt">Please use your full name</p>
+                <input name="Name" type="text" placeholder="Full Name" required>
+                <button class="submit-check-in" type="submit">Check in</button>
+            </form>
+              
+            <audio id="successSound" src="success-notification_C_major.wav"></audio>
+            
+            <script>
+              /* Alert */
+              const nameInput = document.querySelector('input[name="Name"]');
+              const alertText = document.getElementById('alert-txt');
+              const checkInButton = document.querySelector('.submit-check-in');
+
+              nameInput.addEventListener('input', function() {
+                if (this.value.includes('@')) {
+                 alertText.style.display = 'block'; // Show the alert message
+                 checkInButton.disabled = true; // Disable the button
+                 this.style.borderColor = 'red'; // Change border color to red
+                 this.style.backgroundColor = 'transparent'; // Make background transparent
+                } else {
+                 alertText.style.display = 'none';  // Hide the alert message
+                 checkInButton.disabled = false; // Enable the button
+                 this.style.borderColor = '';   // Reset border color (or set your default)
+                 this.style.backgroundColor = ''; // Reset background color (or set your default)
+                }
+               });
+
+              /* Submission */
+              document.getElementById('check-in-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+            
+                const form = event.target;
+                const formData = new FormData(form);
+                const successSound = document.getElementById('successSound');
+                const loadingContainer = document.querySelector('.loading-container');
+                const successContainer = document.querySelector('.success-container');
+            
+                loadingContainer.style.display = 'flex';
+            
+                fetch(form.action, {
+                  method: 'POST',
+                  body: formData,
+                  mode: 'no-cors'
+                })
+                .then(response => {
+                  console.log('Form submitted successfully!');
+                  form.reset();
+                  /* successSound.play(); */
+                  loadingContainer.style.display = 'none';
+                  window.location.href = "success.html";
+                  successContainer.style.display = 'flex';
+                })
+                .catch(error => {
+                  console.error('Error submitting form:', error);
+                  loadingContainer.style.display = 'none';
+                });
+              });
+            </script>
+        </main>
+    </div>
+
+    <footer>
+        <p></p>
+    </footer>
+</body>

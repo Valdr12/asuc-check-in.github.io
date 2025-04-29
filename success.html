@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-in Successful!</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+</head>
+<body>
+    <div class="success-container display">
+        <dotlottie-player id="success-icon-new" src="https://lottie.host/64b537b2-e211-4b2e-98c4-4dfe58e0e9ae/xehVIF0Hjf.lottie" background="transparent" speed="1" style="width: 400px; height: 400px" autoplay></dotlottie-player>
+        <svg id='success-icon' width='180' height='180' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><rect width='24' height='24' stroke='none' fill='#ffff' opacity='0'/><g transform="matrix(1.43 0 0 1.43 12 12)" ><g><g transform="matrix(1 0 0 1 0 -0.13)" ><path style="stroke: rgb(255, 255, 255); stroke-width: 1; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;" transform=" translate(-7, -6.87)" d="M 4 8 L 6.05 9.64 C 6.161496806028709 9.731817610451968 6.308412177997273 9.768546453444108 6.45 9.74 C 6.5928243153403665 9.713208241916785 6.716927106184054 9.625606271909476 6.79 9.5 L 10 4" stroke-linecap="round" /></g><g transform="matrix(1 0 0 1 0 0)" ><circle style="stroke: rgb(255, 255, 255); stroke-width: 1; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;" cx="0" cy="0" r="6.5" /></g></g></g></svg>
+        <h1 class="success-title">You're checked-in!<br><span id="currentDate"></span></h1>
+        <script>
+          const currentDateElement = document.getElementById('currentDate');
+          const now = new Date();
+          const options = {year: 'numeric', month: 'long', day: 'numeric'};
+          currentDateElement.textContent = now.toLocaleDateString(undefined, options);
+        </script>
+      </div>
+</body>
+</html>
